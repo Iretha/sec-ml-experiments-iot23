@@ -10,9 +10,10 @@ No  | Name          | Description
 
 ## 2. How to run this example
 1. Download & Extract [IoT23](https://www.stratosphereips.org/datasets-iot23)
-2. Open config.py and modify "iot23_dataset_location" to point to "iot23_small" folder from the dataset
-3. Create new output folder for the output files
-4. Open config.py and modify "iot23_output_directory" to point to the new folder (3.)
+2. Clone this repo
+3. Open **config.py** and modify "iot23_dataset_location" to point to "iot23_small" folder from the dataset
+4. Create new output folder for the output files
+5. Open **config.py** and modify "iot23_output_directory" to point to the newly created output folder
 
 
 ---

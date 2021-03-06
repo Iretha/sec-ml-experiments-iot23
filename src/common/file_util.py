@@ -35,13 +35,7 @@ def get_file_size_in_mb(file_path):
     return size_in_mb
 
 
-def write_df_to_csv(df, dest_file_path, mode='a'):
-    rows = len(df.index)
-    add_header = False if path.exists(dest_file_path) else True
-    df.to_csv(dest_file_path, mode=mode, header=add_header, index=False)
-
-
-def clean_dir_content(iot23_output_directory):
+def delete_dir_content(iot23_output_directory):
     files = glob.glob(iot23_output_directory + '/*')
     for f in files:
         os.remove(f)

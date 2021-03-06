@@ -2,8 +2,8 @@ import logging
 import time
 
 from config import iot23_dataset_location, iot23_output_directory, iot23_file_name_pattern, iot23_malicious_type_column_name
-from src.common.data_frame_util import df_load_dataframe_from_bro_file
-from src.common.file_util import find_files_recursively, filter_out_files_larger_than, write_df_to_csv, clean_dir_content
+from src.common.data_frame_util import df_load_dataframe_from_bro_file, write_to_csv
+from src.common.file_util import find_files_recursively, filter_out_files_larger_than, delete_dir_content
 
 # Setup logger
 logging.basicConfig(
@@ -27,7 +27,7 @@ def split_files_by_malicious_type(dataset_location, file_name_pattern, class_col
             logging.info('\tProcessing ' + value + " from  " + file_path)
             df_by_value = data_frame.loc[data_frame[class_col_name] == value]
             dest_file_path = output_dir + value + ".csv"
-            write_df_to_csv(df_by_value, dest_file_path)
+            write_to_csv(df_by_value, dest_file_path)
         logging.info('End processing file: ' + file_path)
 
     end_time = time.time()
@@ -36,5 +36,5 @@ def split_files_by_malicious_type(dataset_location, file_name_pattern, class_col
     print("---> END in %s seconds = %s minutes ---" % (exec_time_seconds, exec_time_minutes))
 
 
-clean_dir_content(iot23_output_directory)
-split_files_by_malicious_type(iot23_dataset_location, iot23_file_name_pattern, iot23_malicious_type_column_name, iot23_output_directory)
+delete_dir_content(iot23_output_directory)
+split_files_by_malicious_type(iot23_dataset_location, iot23_file_name_pattern, iot23_malicious_type_column_name, iot23_output_directory, skip_files_larger_than=3000)
