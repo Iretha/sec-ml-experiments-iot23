@@ -1,7 +1,7 @@
 # sec-ml-experiments-iot23
 ML experiments with IoT23 dataset [1]
 
-## 1. Tools & Technologies
+## 1. Prerequisites (Tools & Technologies)
 No  | Name          | Description
 --- |------------   |-------------
 1   | [Python 3.8](https://www.python.org/downloads/release/python-380/)|   Programming Language 
@@ -10,7 +10,9 @@ No  | Name          | Description
 
 ## 2. How to run this example
 1. Download & Extract [IoT23](https://www.stratosphereips.org/datasets-iot23)
-2. Copy "iot23_small" to "../datasets/" ("datasets" should be on the same level as the current project)
+2. Open config.py and modify "iot23_dataset_location" to point to "iot23_small" folder from the dataset
+3. Create new output folder for the output files
+4. Open config.py and modify "iot23_output_directory" to point to the new folder (3.)
 
 
 ---
