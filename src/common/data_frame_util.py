@@ -28,5 +28,5 @@ def join_data_slices_in_single_data_frame(source_dir, source_files, slice_size=0
 
 
 def write_to_csv(df, dest_file_path, mode='a'):
-    add_header = False if path.exists(dest_file_path) else True
+    add_header = False if (mode == 'a' and path.exists(dest_file_path)) else True
     df.to_csv(dest_file_path, mode=mode, header=add_header, index=False)

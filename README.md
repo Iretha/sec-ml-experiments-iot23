@@ -6,6 +6,8 @@ No  | Name          | Description
 --- |------------   |-------------
 1   | [Python 3.8](https://www.python.org/downloads/release/python-380/)|   Programming Language 
 2   | [scikit-learn](https://scikit-learn.org/stable/)| Tools for Machine Learning in Python
+3   | [NymPy](https://numpy.org/)| Tools for Scientific Computing in Python
+4   | [pandas](https://pandas.pydata.org/)| Tools for Data Analysis & Data Manipulation in Python
 
 
 ## 2. How to run this example

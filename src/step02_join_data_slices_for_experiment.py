@@ -1,6 +1,6 @@
 import time
 import logging
-
+from sklearn.utils import shuffle
 
 from src.common.data_frame_util import join_data_slices_in_single_data_frame, write_to_csv
 
@@ -17,14 +17,17 @@ def join_data_slices_from_files(source_dir, source_files, output_file_name, repl
 
     start_time = time.time()
 
-    # make single dataframe from multiple files
+    # Make single dataframe from multiple files
     data_frame = join_data_slices_in_single_data_frame(source_dir, source_files, slice_size=slice_size)
+
+    # Shuffle data
+    data_frame = shuffle(data_frame)
 
     # Replacing empty values with the values from the dictionary
     if len(replace_values) > 0:
-        data_frame.applymap(lambda s: replace_values.get(s) if s in replace_values else s)
+        data_frame = data_frame.applymap(lambda s: replace_values.get(s) if s in replace_values else s)
 
-    # write to file
+    # Write to file
     write_to_csv(data_frame, source_dir + output_file_name, mode='w')
 
     logging.info('Output file is: ' + source_dir + output_file_name)

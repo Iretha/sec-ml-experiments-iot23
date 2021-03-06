@@ -36,5 +36,5 @@ def split_files_by_malicious_type(dataset_location, file_name_pattern, class_col
     print("---> END in %s seconds = %s minutes ---" % (exec_time_seconds, exec_time_minutes))
 
 
-delete_dir_content(iot23_output_directory)
-split_files_by_malicious_type(iot23_dataset_location, iot23_file_name_pattern, iot23_malicious_type_column_name, iot23_output_directory, skip_files_larger_than=3000)
+# delete_dir_content(iot23_output_directory)
+# split_files_by_malicious_type(iot23_dataset_location, iot23_file_name_pattern, iot23_malicious_type_column_name, iot23_output_directory, skip_files_larger_than=3000)
