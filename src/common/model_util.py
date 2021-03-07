@@ -23,7 +23,7 @@ def save_classification_model(model, model_dir=None, model_name=None, model_name
 
 
 # Load model
-def load_model(model_path):
+def load_classification_model(model_path):
     with open(model_path, 'rb') as file:
         model = pickle.load(file)
 

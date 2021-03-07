@@ -88,24 +88,21 @@ def create_autoenc_feature_selection_model(X, y, epochs=20, batch_size=1000, mod
     print("---> END in %s seconds = %s minutes ---" % (exec_time_seconds, exec_time_minutes))
 
 
-def encode_data_with_autoencoder(X, y, encoder_path, test_size=0.3, random_state=None):
+def encode_data_with_autoencoder(X_train, y_train, X_test, y_test, encoder_path):
     logging.info('------ Encoding data with autoencoder... ----')
 
     # load encoder
     encoder = load_model(encoder_path)
 
-    # Split Data
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=random_state)
-
     # scale data
     t = MinMaxScaler()
     t.fit(X_train)
     X_train = t.transform(X_train)
-    X_test = t.transform(X_test)
+    # X_test = t.transform(X_test)
 
     # encode the train data
     X_train_encode = encoder.predict(X_train)
     # encode the test data
     X_test_encode = encoder.predict(X_test)
 
-    return X_train_encode, X_test_encode, y_train, y_test
+    return X_train_encode, y_train, X_test_encode, y_test
