@@ -5,6 +5,8 @@ from os import path
 
 from sklearn.preprocessing import OrdinalEncoder
 
+from src.common.plt_util import plt_heatmap
+
 
 def df_get(file_path):
     logging.info('\tLoading df from ' + file_path)
@@ -32,6 +34,7 @@ def join_data_slices_in_single_data_frame(source_dir, source_files, slice_size=0
 def write_to_csv(df, dest_file_path, mode='a'):
     add_header = False if (mode == 'a' and path.exists(dest_file_path)) else True
     df.to_csv(dest_file_path, mode=mode, header=add_header, index=False)
+    logging.info('File saved: ' + dest_file_path)
 
 
 def df_drop_cols(df, *cols):
@@ -128,3 +131,15 @@ def df_add_cat_columns(df, column_names=[]):
         code_col_name = str(column_name) + '_cat'
         df[column_name] = df[column_name].astype('category')
         df[code_col_name] = df[column_name].cat.codes
+
+
+def df_corr(df, columns=None, heat=False):
+    if columns is None:
+        columns_count = len(df.columns)
+    else:
+        columns_count = len(columns)
+
+    corr = df.iloc[:, 0:columns_count].corr().abs()
+    if heat:
+        plt_heatmap(corr, columns_count)
+    return corr

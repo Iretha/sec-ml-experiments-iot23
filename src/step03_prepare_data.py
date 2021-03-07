@@ -2,10 +2,12 @@ import pandas as pd
 import logging
 import time
 
-# Setup logger
-from config import iot23_output_directory
-from src.common.data_frame_util import df_get, df_drop_cols, df_clean_data
+from sklearn.model_selection import train_test_split
 
+from config import iot23_output_directory
+from src.common.data_frame_util import df_get, df_drop_cols, df_clean_data, write_to_csv
+
+# Setup logger
 logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
     level=logging.INFO,
@@ -39,7 +41,18 @@ def clean_data(source_dir,
     return data_frame
 
 
+def split_data(df, export_dir, export_file_name, test_size=0.2):
+    train, test = train_test_split(df, test_size=test_size)
+
+    file_path_train = export_dir + export_file_name + '_train.csv'
+    write_to_csv(train, file_path_train, mode='w')
+
+    file_path_test = export_dir + export_file_name + '_test.csv'
+    write_to_csv(test, file_path_test, mode='w')
+
+
 cols_to_drop = ['ts', 'uid', 'id.orig_h', 'id.resp_h', 'label']
 cols_to_cat = ['detailed-label']
 data_file_name = '_benign_okiru_horiz_port_scan_ddos_1_000_000.csv'
-clean_data(iot23_output_directory, data_file_name, cols_to_delete=cols_to_drop, cols_to_category=cols_to_cat, export_file=True)
+data_frame = clean_data(iot23_output_directory, data_file_name, cols_to_delete=cols_to_drop, cols_to_category=cols_to_cat, export_file=True)
+split_data(data_frame, iot23_output_directory, data_file_name, test_size=0.2)

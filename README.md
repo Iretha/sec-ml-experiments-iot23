@@ -8,7 +8,8 @@ No  | Name          | Description
 2   | [scikit-learn](https://scikit-learn.org/stable/)| Tools for Machine Learning in Python
 3   | [NymPy](https://numpy.org/)| Tools for Scientific Computing in Python
 4   | [pandas](https://pandas.pydata.org/)| Tools for Data Analysis & Data Manipulation in Python
-
+5   | [keras](https://keras.io/)| Deep Learning library for Python
+6   | [pickle](https://docs.python.org/3/library/pickle.html)| Python object serialization for model serialization
 
 ## 2. How to run this example
 1. Download & Extract [IoT23](https://www.stratosphereips.org/datasets-iot23)
