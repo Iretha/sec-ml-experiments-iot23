@@ -7,4 +7,4 @@ X, y = load_data_into_frame(data_file_name)
 
 # Run Classification (Standard)
 model_dir = '../models/'
-create_classification_models(X, y, test_size=0.2, model_output_dir=model_dir)
+create_classification_models(X, y, model_output_dir=model_dir)

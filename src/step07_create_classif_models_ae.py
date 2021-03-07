@@ -20,7 +20,7 @@ X, y = load_data_into_frame(data_file_name)
 model_dir = '../models/'
 model_name = '_Encoder.h5'
 encoder_path = model_dir + model_name
-create_classification_models_with_ae_features(X, y, encoder_path, model_output_dir=model_dir, test_size=0.2)
+create_classification_models_with_ae_features(X, y, encoder_path, model_output_dir=model_dir)
 
 # 4.3. Clustering
 # logging.info('Start clustering... ')
